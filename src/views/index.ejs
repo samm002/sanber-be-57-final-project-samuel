@@ -1,11 +1,115 @@
+<!-- views/documentation.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Toko TypeScript Home</title>
+  <title>Toko Typescript</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    h1 {
+      text-align: center;
+      color: #007bff;
+    }
+    h2 {
+      margin-top: 40px;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 10px;
+      color: #007bff;
+    }
+    h2.testing {
+      border-bottom-color: #28a745; /* Green border for the new section */
+      color: #28a745; /* Green text color for the new section */
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #007bff;
+      color: #fff;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 10px;
+      }
+      th, td {
+        padding: 8px 10px;
+      }
+    }
+    .postman-links {
+      list-style-type: none;
+      padding: 0;
+    }
+    .postman-links li {
+      margin-bottom: 10px;
+    }
+    .postman-links a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .postman-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-  <h1>TEST</h1>
+  <div class="container">
+    <h1>Toko Typescript API Documentation</h1>
+    
+    <% for (const [category, endpoint] of Object.entries(endpoints)) { %>
+      <h2><%= category.charAt(0).toUpperCase() + category.slice(1) %></h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Endpoint</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% endpoint.forEach(endpoint => { %>
+            <tr>
+              <td><%= endpoint.method %></td>
+              <td><%= endpoint.endpoint %></td>
+              <td><%= endpoint.description %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+
+    <h2 class="testing">Testing (Postman)</h2>
+    <p>Untuk Collection dan Environment, silahkan save as dengan format <strong>.json</strong></p>
+    <ul class="postman-links">
+      <li><a href="https://documenter.getpostman.com/view/26314293/2sA3dyhqdC" target="_blank">Postman Documentation</a></li>
+      <li><a href="https://res.cloudinary.com/dkyazovdn/raw/upload/v1720134114/Node.Js_Batch_57_Final_Project.postman_collection_v2_dmsejp.json" target="_blank">Postman Collection (V2)</a></li>
+      <li><a href="https://res.cloudinary.com/dkyazovdn/raw/upload/v1720134113/Node.Js_Batch_57_Final_Project.postman_collection_v2.1_i0vm2j.json" target="_blank">Postman Collection (V2.1)</a></li>
+      <li><a href="https://res.cloudinary.com/dkyazovdn/raw/upload/v1720134113/NodeJs-Batch57.postman_environment_qbqvmb.json" target="_blank">Postman Environment</a></li>
+    </ul>
+  </div>
 </body>
 </html>

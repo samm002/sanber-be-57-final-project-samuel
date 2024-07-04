@@ -1,9 +1,9 @@
-# Sanbercode TypeScript App
+# Sanbercode TypeScript App (Toko Typescript)
 ## Introduction
 Project akhir Sanbercode Node.Js berupa API untuk melakukan CRUD pada fitur categories, products, orders serta beberapa fitur seperti login dan register user, melihat dan edit profile user, dan upload file pada layanan cloudinary
 
-### Public URL (Railway) 
-
+### Public URL (Deploy di Railway) 
+https://final-project-production-7c85.up.railway.app
 
 ### Fitur Utama
 * Login & register user
@@ -15,10 +15,10 @@ Project akhir Sanbercode Node.Js berupa API untuk melakukan CRUD pada fitur cate
 * Upload single & multiple file pada cloudinary
 
 ### Panduan Instalasi
-* Clone repository [ini](https://github.com/blackdevelopa/ProjectSupport.git).
+* Clone repository [ini](https://github.com/samm002/sanber-be-57-final-project-samuel.git).
 * Jalankan perintah `npm install` untuk menginstall semua dependencies
-* Siapkan database MongoDB dengan tipe replica set (disarankan menggunakan MongoDB Atlas karena mendukung pembuatan replica set secara otomatis)
-* Siapkan akun cloudinary dan simpan semua data konfigurasi yang diperlukan untuk integrasi
+* Siapkan database MongoDB dengan tipe replica set (disarankan menggunakan MongoDB Atlas karena mendukung pembuatan replica set secara otomatis) dan catat URI dan nama database yang digunakan
+* Siapkan akun cloudinary dan simpan semua data konfigurasi yang diperlukan untuk integrasi (Untuk data konfigurasi yang diperlukan dapat dilihat pada file .env.example)
 * Buatlah file .env dalam root folder project dan tambahkan environment variabel yang dibutuhkan add your variables. Untuk lebih jelasnya, lihat file .env.example yang disediakan di repository
 
 ### Panduan Penggunaan
@@ -138,7 +138,7 @@ Library yang berperan sebagai konvensi penamaan untuk mendukung definisi tipe Ty
 
 ### POST auth/register
 
-Contoh: http://example.gov/api/auth/register
+Contoh: https://final-project-production-7c85.up.railway.app/api/auth/register
 
 Request body :
 
@@ -172,7 +172,7 @@ Response body :
 
 ### POST auth/login
 
-Contoh: http://example.gov/api/auth/login
+Contoh: https://final-project-production-7c85.up.railway.app/api/auth/login
 
 Request body :
 
@@ -190,7 +190,7 @@ Response body :
 
 ### POST /upload & POST /uploads
 
-Contoh: http://example.gov/api/upload atau http://example.gov/api/uploads
+Contoh: https://final-project-production-7c85.up.railway.app/api/upload atau https://final-project-production-7c85.up.railway.app/api/uploads
 
 Request body (multipart/form-data) :
 - Key   : file (/upload) atau files (/uploads)
@@ -226,7 +226,7 @@ Response body :
 
 ### POST /categories
 
-Contoh: http://example.gov/api/categories
+Contoh: https://final-project-production-7c85.up.railway.app/api/categories
 
 Request body :
 
@@ -250,7 +250,7 @@ Response body :
 
 ### POST /products
 
-Contoh: http://example.gov/api/products
+Contoh: https://final-project-production-7c85.up.railway.app/api/products
 
 Request body :
 
@@ -287,7 +287,7 @@ Response body :
 
 ### POST /orders
 
-Contoh: http://example.gov/api/orders
+Contoh: https://final-project-production-7c85.up.railway.app/api/orders
 
 Request Header
 * Key   : Authorization
@@ -343,3 +343,10 @@ Response body :
 
 Invoice 
 ![Invoice Image](https://res.cloudinary.com/dkyazovdn/image/upload/v1720130350/ivj5yzmibqfoogtkl20n.png)
+
+## Testing (Postman)
+Untuk Collection dan Environment, silahkan save as dengan format `.json`
+* [Postman Documentation](https://documenter.getpostman.com/view/26314293/2sA3dyhqdC)
+* [Postman Collection (V2)](https://res.cloudinary.com/dkyazovdn/raw/upload/v1720134114/Node.Js_Batch_57_Final_Project.postman_collection_v2_dmsejp.json)
+* [Postman Collection (V2.1)](https://res.cloudinary.com/dkyazovdn/raw/upload/v1720134113/Node.Js_Batch_57_Final_Project.postman_collection_v2.1_i0vm2j.json)
+* [Postman Environment](https://res.cloudinary.com/dkyazovdn/raw/upload/v1720134113/NodeJs-Batch57.postman_environment_qbqvmb.json)
