@@ -97,12 +97,12 @@ export default {
       const total = await Product.countDocuments(query);
 
       res.status(200).json({
-        message: "Success get all products",
-        data: products,
         page: +page,
         limit: +limit,
         total,
         totalPages: Math.ceil(total / limit),
+        message: "Success get all products",
+        data: products,
       });
     } catch (error) {
       const err = error as Error;

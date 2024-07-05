@@ -129,10 +129,164 @@ Library yang berperan sebagai konvensi penamaan untuk mendukung definisi tipe Ty
 | `uploadMiddleware.multiple`   | `POST`         | `/api/uploads`                  | Untuk mengunggah lebih 1 file
 
 ## Contoh Format Request dan Response
-
+Digunakan khusus untuk route yang menerapkan middleware authMiddleware (untuk keperluan autentikasi user)
 ### Request Header
 * Key   : Authorization
 * Value : Bearer `<JWT Token>`
+
+### Request Body & Response (GET Method)
+`GET All products & order` menerapkan `pagination` dan `request query`
+
+### GET All products
+
+Contoh (tanpa request query): https://final-project-production-7c85.up.railway.app/api/products
+
+Request query (optional) :
+- search (string) = `nama product` -> default tidak ada sehingga seluruh product ditampilkan
+- page (number) = `angka berapapun` -> default `1`
+- limit (number) = `angka berapapun` -> default `10`
+
+Contoh (dengan request query): https://final-project-production-7c85.up.railway.app/api/products?search=fanta&page=1&limit=1
+
+Response body (dengan request query) :
+
+    {
+        "page": 1,
+        "limit": 1,
+        "total": 1,
+        "totalPages": 1,
+        "message": "Success get all products",
+        "data": [
+            {
+                "_id": "6676eabaf3af1ba4b11a6e12",
+                "name": "fanta",
+                "description": "Soda terenak kedua di Indonesia",
+                "images": [
+                    "https://res.cloudinary.com/dkyazovdn/image/upload/v1719069326/nrx1nk77npv1vboi5yyc.webp"
+                ],
+                "price": 5000,
+                "category": {
+                    "_id": "6676e816c0e97355adf62529",
+                    "name": "food & drink"
+                },
+                "createdAt": "2024-06-22T15:16:10.342Z",
+                "updatedAt": "2024-07-05T04:06:02.995Z",
+                "slug": "fanta",
+                "__v": 0,
+                "quantity": 16
+            }
+        ]
+    }
+
+### GET All orders (User order history)
+
+Contoh (tanpa request query): https://final-project-production-7c85.up.railway.app/api/orders
+
+Request query (optional) :
+- status (string) = `pending` atau `completed` atau `cancelled` -> default tidak ada sehingga user order history dari semua status ditampilkan
+- page (number) = `angka berapapun` -> default `1`
+- limit (number) = `angka berapapun` -> default `10`
+
+Contoh (dengan request query): https://final-project-production-7c85.up.railway.app/api/orders?status=pending&page=2&limit=5
+
+Response body (tanpa request query) :
+
+    {
+        "page": 1,
+        "limit": 10,
+        "total": 3,
+        "totalPages": 1,
+        "user": {
+            "_id": "6686f4e771b17d12f8d2215b",
+            "fullName": "Samuel Djodi",
+            "username": "samueldjodi",
+            "email": "samueldjodi@email.com",
+            "roles": [
+                "admin"
+            ],
+            "profilePicture": "default.jpg",
+            "createdAt": "2024-07-04T19:15:51.109Z",
+            "updatedAt": "2024-07-04T19:29:54.583Z",
+            "__v": 0
+        },
+        "orders": [
+            {
+                "_id": "6687712bf5982f683ae48cc8",
+                "grandTotal": 21000,
+                "orderItems": [
+                    {
+                        "name": "fanta",
+                        "productId": "6676eabaf3af1ba4b11a6e12",
+                        "price": 5000,
+                        "quantity": 1,
+                        "_id": "6687712bf5982f683ae48cc9"
+                    },
+                    {
+                        "name": "nipismadu2",
+                        "productId": "6676e98ef3af1ba4b11a6e04",
+                        "price": 4000,
+                        "quantity": 4,
+                        "_id": "6687712bf5982f683ae48cca"
+                    }
+                ],
+                "createdBy": "6686f4e771b17d12f8d2215b",
+                "status": "completed",
+                "createdAt": "2024-07-05T04:06:03.517Z",
+                "updatedAt": "2024-07-05T04:06:03.517Z",
+                "__v": 0
+            },
+            {
+                "_id": "6687710df5982f683ae48cb9",
+                "grandTotal": 23000,
+                "orderItems": [
+                    {
+                        "name": "fanta",
+                        "productId": "6676eabaf3af1ba4b11a6e12",
+                        "price": 5000,
+                        "quantity": 3,
+                        "_id": "6687710df5982f683ae48cba"
+                    },
+                    {
+                        "name": "nipismadu2",
+                        "productId": "6676e98ef3af1ba4b11a6e04",
+                        "price": 4000,
+                        "quantity": 2,
+                        "_id": "6687710df5982f683ae48cbb"
+                    }
+                ],
+                "createdBy": "6686f4e771b17d12f8d2215b",
+                "status": "pending",
+                "createdAt": "2024-07-05T04:05:33.939Z",
+                "updatedAt": "2024-07-05T04:05:33.939Z",
+                "__v": 0
+            },
+            {
+                "_id": "6686f942f7d6cd82312606f8",
+                "grandTotal": 19000000,
+                "orderItems": [
+                    {
+                        "name": "Laptop",
+                        "productId": "6676eb4cf3af1ba4b11a6e2a",
+                        "price": 5000000,
+                        "quantity": 3,
+                        "_id": "6686f942f7d6cd82312606f9"
+                    },
+                    {
+                        "name": "Smartphone",
+                        "productId": "6676eb66f3af1ba4b11a6e2f",
+                        "price": 2000000,
+                        "quantity": 2,
+                        "_id": "6686f942f7d6cd82312606fa"
+                    }
+                ],
+                "createdBy": "6686f4e771b17d12f8d2215b",
+                "status": "pending",
+                "createdAt": "2024-07-04T19:34:26.363Z",
+                "updatedAt": "2024-07-04T19:34:26.363Z",
+                "__v": 0
+            }
+        ]
+    }
 
 ### Request Body & Response (POST Method)
 

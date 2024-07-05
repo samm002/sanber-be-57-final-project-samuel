@@ -93,7 +93,25 @@ export default {
         page = 1,
       } = req.query as unknown as IPaginationQuery;
 
-      const orders = await Order.find({ createdBy: userId })
+      const { status } = req.query as { status: string };
+      const validStatus = ["pending", "completed", "cancelled"];
+
+      const query: { [key: string]: any } = {
+        createdBy: userId,
+      }
+
+      if (status) {
+        const sanitizedStatus = status.toLowerCase();
+        if (!validStatus.includes(sanitizedStatus)) {
+          return res.status(404).json({
+            message: "Failed to get user order history",
+            detail: `Order status only contain 'pending', 'completed', and 'cancelled', you input : '${sanitizedStatus}'`,
+          });
+        }
+        query.status = status;
+      }
+
+      const orders = await Order.find(query)
         .limit(limit)
         .skip((page - 1) * limit)
         .sort({ createdAt: -1 })
@@ -101,7 +119,6 @@ export default {
       const total = orders.length;
 
       res.status(200).json({
-        message: "Success get user order histroy",
         page: +page,
         limit: +limit,
         total,
